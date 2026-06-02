@@ -1,0 +1,8 @@
+{
+  "// note": "Repo root opens fine in VS Code: rust-analyzer is pointed at the Rust workspace below.",
+  "rust-analyzer.linkedProjects": ["sovereign-rs/Cargo.toml"],
+  "rust-analyzer.check.command": "clippy",
+  "files.watcherExclude": {
+    "**/target/**": true
+  }
+}

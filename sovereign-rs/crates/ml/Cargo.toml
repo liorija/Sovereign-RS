@@ -1,0 +1,15 @@
+[package]
+name         = "sovereign-ml"
+version      = { workspace = true }
+edition      = { workspace = true }
+rust-version = { workspace = true }
+license      = { workspace = true }
+description  = "ML inference: a native logistic-regression model + the Model trait (ONNX ensembles later)."
+
+[dependencies]
+sovereign-core = { workspace = true }
+tracing        = { workspace = true }
+serde          = { workspace = true }
+
+[dev-dependencies]
+proptest = { workspace = true }

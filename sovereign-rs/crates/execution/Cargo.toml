@@ -1,0 +1,17 @@
+[package]
+name         = "sovereign-execution"
+version      = { workspace = true }
+edition      = { workspace = true }
+rust-version = { workspace = true }
+license      = { workspace = true }
+description  = "Contract routing, order construction, position sizing, settlement and commission gates."
+
+[dependencies]
+sovereign-core  = { workspace = true }
+sovereign-quant = { workspace = true }
+chrono          = { workspace = true }
+tracing         = { workspace = true }
+serde           = { workspace = true }
+
+[dev-dependencies]
+proptest = { workspace = true }

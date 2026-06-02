@@ -1,0 +1,15 @@
+[package]
+name         = "sovereign-universe"
+version      = { workspace = true }
+edition      = { workspace = true }
+rust-version = { workspace = true }
+license      = { workspace = true }
+description  = "Multi-asset universe (equities/ETFs/futures/forex/crypto) + capital-tier-adaptive round-robin scanner."
+
+[dependencies]
+sovereign-core = { workspace = true }
+serde          = { workspace = true }
+tracing        = { workspace = true }
+
+[dev-dependencies]
+proptest = { workspace = true }

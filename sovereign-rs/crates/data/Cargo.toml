@@ -1,0 +1,21 @@
+[package]
+name         = "sovereign-data"
+version      = { workspace = true }
+edition      = { workspace = true }
+rust-version = { workspace = true }
+license      = { workspace = true }
+description  = "Data providers, circuit breaker, and fallback waterfall for Sovereign-RS."
+
+[dependencies]
+sovereign-core = { workspace = true }
+tracing        = { workspace = true }
+serde          = { workspace = true }
+serde_json     = { workspace = true }
+chrono         = { workspace = true }
+reqwest        = { workspace = true }
+csv            = { workspace = true }
+async-trait    = "0.1"
+
+[dev-dependencies]
+proptest = { workspace = true }
+tokio    = { workspace = true }

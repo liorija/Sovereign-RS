@@ -1,0 +1,19 @@
+# Rust build artifacts
+/target
+**/*.rs.bk
+*.pdb
+
+# Criterion benchmark output
+/target/criterion
+
+# Local env / secrets (API keys for SEC-EDGAR, FRED, IBKR, etc.)
+.env
+*.local.toml
+
+# Data caches (Parquet hive cache, etc.)
+/data/cache
+*.parquet.tmp
+
+# OS / editor noise
+.DS_Store
+*.swp

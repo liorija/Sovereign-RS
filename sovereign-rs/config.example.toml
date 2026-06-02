@@ -1,0 +1,23 @@
+# Example Sovereign-RS configuration.
+# Copy to `config.toml` and edit. Secrets (API keys) come from the environment,
+# never this file: SEC_USER_AGENT, FRED_API_KEY, IBKR_*, etc.
+
+[risk]
+dollar_risk_per_trade = 250.0
+max_position_pct      = 0.15
+drawdown_ladder       = [-0.05, -0.10, -0.15, -0.20]
+
+[killhouse]
+min_conviction      = 8
+max_monte_carlo_es  = -0.08   # CVaR floor for Gate 3
+vpin_ceiling        = 0.65    # informed-flow ceiling for Gate 5
+
+[montecarlo]
+paths        = 50000
+horizon_days = 7
+confidence   = 0.95
+seed         = 12648430
+
+[data]
+sec_user_agent = "sovereign-rs/0.1 (contact: ops@example.com)"
+http_timeout_s = 10

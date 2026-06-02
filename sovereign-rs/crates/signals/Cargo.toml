@@ -1,0 +1,15 @@
+[package]
+name         = "sovereign-signals"
+version      = { workspace = true }
+edition      = { workspace = true }
+rust-version = { workspace = true }
+license      = { workspace = true }
+description  = "Byzantine-fault-tolerant agent consensus and signal scoring."
+
+[dependencies]
+sovereign-core = { workspace = true }
+tracing        = { workspace = true }
+serde          = { workspace = true }
+
+[dev-dependencies]
+proptest = { workspace = true }

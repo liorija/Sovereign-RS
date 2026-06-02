@@ -1,0 +1,16 @@
+[package]
+name         = "sovereign-features"
+version      = { workspace = true }
+edition      = { workspace = true }
+rust-version = { workspace = true }
+license      = { workspace = true }
+description  = "Vectorized technical-indicator feature engineering (port of build_features_polars)."
+
+[dependencies]
+sovereign-core = { workspace = true }
+ndarray        = { workspace = true }
+serde          = { workspace = true }
+tracing        = { workspace = true }
+
+[dev-dependencies]
+proptest = { workspace = true }

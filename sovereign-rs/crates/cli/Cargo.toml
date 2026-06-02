@@ -1,0 +1,27 @@
+[package]
+name         = "sovereign-cli"
+version      = { workspace = true }
+edition      = { workspace = true }
+rust-version = { workspace = true }
+license      = { workspace = true }
+description  = "Command-line entry point for the Sovereign-RS engine."
+
+[[bin]]
+name = "sovereign"
+path = "src/main.rs"
+
+[dependencies]
+sovereign-core    = { workspace = true }
+sovereign-quant   = { workspace = true }
+sovereign-signals = { workspace = true }
+sovereign-risk    = { workspace = true }
+sovereign-engine  = { workspace = true }
+sovereign-microstructure = { workspace = true }
+sovereign-guards  = { workspace = true }
+sovereign-universe = { workspace = true }
+tokio             = { workspace = true }
+tracing           = { workspace = true }
+anyhow            = { workspace = true }
+clap              = { workspace = true }
+rand              = { workspace = true }
+mimalloc          = { workspace = true }

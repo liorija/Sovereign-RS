@@ -1,0 +1,119 @@
+# ╔══════════════════════════════════════════════════════════════════════════╗
+# ║  SOVEREIGN-RS — HFT Quant Trading Engine (Rust port of "Sovereign V3xx")  ║
+# ║  Cargo workspace root.                                                     ║
+# ╚══════════════════════════════════════════════════════════════════════════╝
+[workspace]
+resolver = "2"
+members = [
+    "crates/core",
+    "crates/quant",
+    "crates/data",
+    "crates/features",
+    "crates/signals",
+    "crates/risk",
+    "crates/execution",
+    "crates/ml",
+    "crates/microstructure",
+    "crates/guards",
+    "crates/anomaly",
+    "crates/physics",
+    "crates/universe",
+    "crates/llm",
+    "crates/broker",
+    "crates/engine",
+    "crates/cli",
+]
+
+[workspace.package]
+version      = "0.1.0"
+edition      = "2021"
+rust-version = "1.90"
+license      = "MIT OR Apache-2.0"
+authors      = ["Sovereign Team"]
+repository   = "https://github.com/liorija/bot-trading-sovereign"
+
+# ── Shared dependency versions (single source of truth) ──────────────────────
+[workspace.dependencies]
+# Internal crates
+sovereign-core     = { path = "crates/core" }
+sovereign-quant    = { path = "crates/quant" }
+sovereign-data     = { path = "crates/data" }
+sovereign-features = { path = "crates/features" }
+sovereign-signals  = { path = "crates/signals" }
+sovereign-risk     = { path = "crates/risk" }
+sovereign-execution = { path = "crates/execution" }
+sovereign-ml       = { path = "crates/ml" }
+sovereign-microstructure = { path = "crates/microstructure" }
+sovereign-guards   = { path = "crates/guards" }
+sovereign-anomaly  = { path = "crates/anomaly" }
+sovereign-physics  = { path = "crates/physics" }
+sovereign-universe = { path = "crates/universe" }
+sovereign-llm      = { path = "crates/llm" }
+sovereign-broker   = { path = "crates/broker" }
+sovereign-engine   = { path = "crates/engine" }
+
+# Error handling (directive: thiserror for libraries, anyhow for the binary)
+thiserror = "2"
+anyhow    = "1"
+
+# Serialization (directive: serde + serde_json for SEC-EDGAR / API payloads)
+serde      = { version = "1", features = ["derive"] }
+serde_json = "1"
+toml       = "0.8"
+
+# Async runtime (directive: tokio for all async I/O, no blocking in the runtime)
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "time", "sync", "signal"] }
+
+# Telemetry (directive: tracing, NOT log/println — microsecond span timing)
+tracing            = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "fmt", "json"] }
+
+# Numerics (directive: ndarray + vectorized ops; `wide` = portable SIMD on stable)
+ndarray    = "0.16"
+nalgebra   = "0.33"
+rand       = "0.8"
+rand_distr = "0.4"
+wide       = "0.7"
+
+# Dataframes / columnar (directive: polars + Parquet, replace pandas/numpy)
+polars = { version = "0.45", default-features = false, features = ["lazy", "parquet", "polars-io", "dtype-full"] }
+
+# HTTP (async I/O for fetchers; rustls avoids a system OpenSSL dependency)
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls", "gzip"] }
+csv     = "1"
+
+# Time
+chrono = { version = "0.4", features = ["serde"] }
+
+# CLI
+clap = { version = "4", features = ["derive"] }
+
+# Custom global allocator (directive: mimalloc to prevent fragmentation)
+mimalloc = { version = "0.1", default-features = false }
+
+# Testing (directive: proptest for property-based / adversarial testing)
+proptest  = "1"
+criterion = { version = "0.5", features = ["html_reports"] }
+
+# ── Profiles ─────────────────────────────────────────────────────────────────
+# Dev: fast iteration, but optimize deps so backtests/sims aren't unusably slow.
+[profile.dev]
+opt-level = 1
+[profile.dev.package."*"]
+opt-level = 3
+
+# Release: maximum throughput for live trading. We keep `panic = "unwind"` (the
+# default) on purpose: the FaultBoundary "Soul" component relies on
+# `catch_unwind` to isolate a panicking sub-system instead of taking the whole
+# bot down. LTO for cross-crate inlining.
+[profile.release]
+opt-level     = 3
+lto           = "thin"
+codegen-units = 1
+strip         = true
+
+# Benches inherit release-like optimization but keep unwind for the harness.
+[profile.bench]
+opt-level     = 3
+lto           = "thin"
+codegen-units = 1

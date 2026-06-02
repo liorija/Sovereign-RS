@@ -1,0 +1,26 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Debug sovereign-cli (demo)",
+      "cargo": {
+        "args": ["build", "--bin=sovereign", "--package=sovereign-cli"],
+        "filter": { "name": "sovereign", "kind": "bin" }
+      },
+      "args": ["demo"],
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Debug unit tests in sovereign-quant",
+      "cargo": {
+        "args": ["test", "--no-run", "--package=sovereign-quant"],
+        "filter": { "kind": "lib" }
+      },
+      "cwd": "${workspaceFolder}"
+    }
+  ]
+}

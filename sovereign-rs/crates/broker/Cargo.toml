@@ -1,0 +1,17 @@
+[package]
+name         = "sovereign-broker"
+version      = { workspace = true }
+edition      = { workspace = true }
+rust-version = { workspace = true }
+license      = { workspace = true }
+description  = "Broker abstraction: in-memory PaperBroker + IBKR adapter (account/config from env)."
+
+[dependencies]
+sovereign-core      = { workspace = true }
+sovereign-execution = { workspace = true }
+serde               = { workspace = true }
+tracing             = { workspace = true }
+async-trait         = "0.1"
+
+[dev-dependencies]
+tokio = { workspace = true }

@@ -1,0 +1,6 @@
+# Pin the toolchain so every machine (and CI) builds bit-identically.
+# `rust-analyzer` in VS Code reads this automatically.
+[toolchain]
+channel    = "stable"
+components = ["rustfmt", "clippy", "rust-src", "rust-analyzer"]
+profile    = "default"

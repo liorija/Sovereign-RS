@@ -1,0 +1,21 @@
+[package]
+name         = "sovereign-engine"
+version      = { workspace = true }
+edition      = { workspace = true }
+rust-version = { workspace = true }
+license      = { workspace = true }
+description  = "Orchestration: candidate pipeline (features→signals→risk) and self-healer."
+
+[dependencies]
+sovereign-core     = { workspace = true }
+sovereign-quant    = { workspace = true }
+sovereign-signals  = { workspace = true }
+sovereign-risk     = { workspace = true }
+sovereign-features = { workspace = true }
+tokio              = { workspace = true }
+tracing            = { workspace = true }
+core_affinity      = "0.8"
+
+[dev-dependencies]
+proptest = { workspace = true }
+tokio    = { workspace = true, features = ["test-util"] }

@@ -1,0 +1,15 @@
+[package]
+name         = "sovereign-microstructure"
+version      = { workspace = true }
+edition      = { workspace = true }
+rust-version = { workspace = true }
+license      = { workspace = true }
+description  = "Information-driven clocks (volume/imbalance bars) and Navier-Stokes microstructure turbulence (Hurst, Reynolds)."
+
+[dependencies]
+sovereign-core = { workspace = true }
+serde          = { workspace = true }
+tracing        = { workspace = true }
+
+[dev-dependencies]
+proptest = { workspace = true }
